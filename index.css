@@ -1,0 +1,96 @@
+
+body {
+    font-size: 100%;
+}
+
+#hourly-weather {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    justify-content: center;
+    gap: 30px;
+
+}
+
+#temperature-text {
+    font-size: 3em;
+    margin: 5px
+}
+
+.hour {
+    border: 1px solid black;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+#weekly-weather {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+    gap: 20px
+}
+
+.day {
+    border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+    width: fit-content;
+    padding: 10px
+}
+
+#bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px
+}
+
+#top h5 {
+    border: 1px solid green;
+}
+
+#top h2 {
+    margin: 10px
+}
+
+#extra {
+    padding-top: 20px;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    margin: auto;
+    justify-content: center;
+    
+}
+
+.extra-inner {
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+    height: 100%;
+    align-items: center;
+
+}
+
+.hourly-weather-inner, .weekly-weather-inner {
+    padding: 50px
+}
+
+#extra div h4 {
+    margin-bottom: 5px
+}

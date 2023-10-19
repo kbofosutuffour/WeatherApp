@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <script type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body onload="search(false)">
+    <div id="top">
+        <div id="city-drop-down">
+            <input onchange="search(true)" type="text" placeholder="Enter city name">
+        </div>
+        <div><h2 id="city-name"></h2></div>
+        <div id="temperature"><h1 id="temperature-text"></h1></div>
+        <div><img id="top-image"></div>
+        <div id="weather-description"></div>
+        <div id="high"></div>
+        <div id="low"></div>
+    </div>
+    <div id="middle">
+        <div id="weather-description-middle"></div>
+        <div id="hourly-weather" onload="hourlyWeather()"></div>
+    </div>
+    <div id="bottom">
+        <div style="padding-bottom: 30px; padding-top: 30px;">10 Day Forecast</div>
+        <div id="weekly-weather" onload="weeklyWeather()"></div>
+    </div>
+    <div id="extra">
+        <div id="uv-index" class="extra-inner"></div>
+        <div id="sunset" class="extra-inner"></div>
+        <div id="wind" class="extra-inner"></div>
+        <div id="precipitation" class="extra-inner"></div>
+        <div id="feels-like" class="extra-inner"></div>
+        <div id="humidity" class="extra-inner"></div>
+        <div id="visibility" class="extra-inner"></div>
+        <div id="pressure" class="extra-inner"></div>
+
+    </div>
+</body>
+</html>
