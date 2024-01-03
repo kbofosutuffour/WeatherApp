@@ -5,11 +5,15 @@ body {
 
 #hourly-weather {
     display: flex;
-    flex-direction: row;
     margin: auto;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    width: min-content;
+    padding: 30px;
+    background-color: #546bab;
+    border-radius: 20px;
     gap: 30px;
-
 }
 
 #temperature-text {
@@ -18,30 +22,31 @@ body {
 }
 
 .hour {
-    border: 1px solid black;
     width: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10px;
 }
 
 #weekly-weather {
     display: flex;
     flex-direction: column;
     margin: auto;
+    justify-content: center;
     align-items: center;
+    width: min-content;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: #546bab;
     gap: 20px
 }
 
 .day {
-    border: 1px solid blue;
     display: flex;
     justify-content: center;
     flex-direction: row;
     gap: 20px;
     width: fit-content;
-    padding: 10px
 }
 
 #bottom {
@@ -55,7 +60,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px
+    gap: 5px;
+    margin-top: 150px;
 }
 
 #top h5 {
@@ -78,12 +84,14 @@ body {
 }
 
 .extra-inner {
-    border: 1px solid green;
     display: flex;
     flex-direction: column;
-    width: 49%;
+    width: 40%;
     height: 100%;
     align-items: center;
+
+    border-radius: 20px;
+    margin: 10px;
 
 }
 
@@ -91,6 +99,48 @@ body {
     padding: 50px
 }
 
+#hourly-weather div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#extra div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #extra div h4 {
     margin-bottom: 5px
+}
+
+#input {
+    padding: 10px;
+    height: 20px;
+    border-radius: 15px;
+}
+
+#background {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+#weatherCondition, #test {
+    width: 80vw;
+    height: 100px;
+    overflow: hidden;
+}
+
+#dayOrNight {
+    width: 20vw;
+    margin-left: 5vw;
 }

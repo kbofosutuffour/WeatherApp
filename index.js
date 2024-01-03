@@ -1,7 +1,18 @@
+WEATHER_CONDITIONS = {
+    "Day": "https://giphy.com/embed/BCgbjF9Y41UgGEam5O",
+    "Night": "https://giphy.com/embed/KxzLgj2R2rneCZ8rvE",
+    "Partly Cloudy": "https://giphy.com/embed/HQp9pMIlKV6zQiBlBi",
+    "Cloudy": "https://giphy.com/embed/dByKTOKy3msWmAx2V4",
+    "Rainy": "https://giphy.com/embed/WE5lcJuijb2hhuM7TK",
+    "Stormy": "https://giphy.com/embed/TgygPXqxrx6PjwPymq",
+    "Snow": "https://giphy.com/embed/eiMzTkBCN4lGg",
+    "Default": "",
+}
+
 
 const search = (input) => {
     var current_search = "http://api.weatherapi.com/v1/current.json?key=aa0c6dd759d24c78a4b155701231608&q=";
-    var city = input? document.querySelector("input").value : "New York";
+    var city = input? document.querySelector("input").value : "Williamsburg, VA";
     current_search = current_search.concat(city, "&aqi=no");
 
     var forecast_search = "http://api.weatherapi.com/v1/forecast.json?key=aa0c6dd759d24c78a4b155701231608&q=";
@@ -20,8 +31,8 @@ const search = (input) => {
             showExtra(response);
         })
         .catch(function(response) {
-            alert('Input invalid')
-
+            alert('Input invalid');
+            console.log(response);
         });
 
 
@@ -30,16 +41,39 @@ const search = (input) => {
 
 const showTop = (response) => {
     var [temperature, low] = [document.getElementById('temperature-text'), document.getElementById('low')];
-    temperature.innerHTML = response.current.temp_f;
+    temperature.innerHTML = response.current.temp_f + '&deg';
     temperature.style.fontSize = "3em";
     document.getElementById('weather-description').innerHTML = response.current.condition.text;
-    document.getElementById('high').innerHTML = "High: " + response.forecast.forecastday[0].day.maxtemp_f;
-    document.getElementById('low').innerHTML = "Low: " + response.forecast.forecastday[0].day.mintemp_f;
+    document.getElementById('high').innerHTML = "High: " + response.forecast.forecastday[0].day.maxtemp_f + '&deg';
+    document.getElementById('low').innerHTML = "Low: " + response.forecast.forecastday[0].day.mintemp_f + '&deg';
     document.getElementById('low').style.paddingBottom = "20px";
     var icon = response.current.condition.icon
     document.getElementById('top-image').src = icon.replace("//cdn.weatherapi.com/", "");
     document.getElementById('city-name').innerHTML = response.location.name;
 
+    document.body.style.backgroundColor = response.current.is_day ? '#87CEEB' : '#2e4482';
+    document.body.style.color = response.current.is_day ? 'black': 'white';
+    document.getElementById('dayOrNight').children[0].setAttribute("src", response.current.is_day ? WEATHER_CONDITIONS["Day"] : WEATHER_CONDITIONS["Night"]);
+    
+    let condition = response.current.condition.text.toLowerCase().split(' ');
+    let type = "";
+    if (condition.includes("clear")) {
+        type = "Default";
+    } else if (condition.includes("partly") && condition.includes("cloudy")) {
+        type = "Partly Cloudy"
+    } else if (condition.includes("rain") || condition.includes("drizzle")) {
+        type = "Rainy"
+    } else if (condition.includes("snow") || condition.includes("blizzard")) {
+        type = "Snow"
+    } else if (condition.includes("thunder") || condition.includes("thundery")) {
+        type = "Stormy"
+    } else {
+        type = "Default";
+    }
+    let weatherConditionDiv = document.getElementById('weatherCondition')
+    for (let i = 0; i < weatherConditionDiv.children.length; i++) {
+        weatherConditionDiv.children[i].setAttribute("src", WEATHER_CONDITIONS[type])
+    }
 
 }
 
@@ -74,6 +108,7 @@ const showMiddle = (response) => {
         hour.className = 'hour';
         
         hourlyWeather.appendChild(hour);
+        hourlyWeather.style.backgroundColor = response.current.is_day ? '#dcf0fa' : '##546bab';
         
     }
 }
@@ -86,7 +121,6 @@ const showBottom = (response) => {
     while(weeklyWeather.firstChild) {
         weeklyWeather.removeChild(weeklyWeather.firstChild);
     }
-    response.forecast.forecastday
     for (let i = 0; i < 3; i++) {
         let day = document.createElement('div');
         let [weekday, high, average, low] = [document.createElement('h3'), document.createElement('h3'), document.createElement('h3'), document.createElement('h3')];
@@ -108,6 +142,8 @@ const showBottom = (response) => {
 
         weeklyWeather.appendChild(day);
     }
+    weeklyWeather.style.backgroundColor = response.current.is_day ? '#dcf0fa' : '##546bab';
+
 
 }
 
@@ -140,6 +176,8 @@ const showExtra = (response) => {
             child.removeChild(child.firstChild)
         }
         child.appendChild(temp);
+        child.style.backgroundColor = response.current.is_day ? '#dcf0fa' : '#546bab';
+
     }
 
 }
