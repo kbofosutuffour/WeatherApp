@@ -1,6 +1,10 @@
 
 body {
     font-size: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #hourly-weather {
@@ -78,7 +82,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     width: 60%;
-    margin: auto;
     justify-content: center;
     
 }
@@ -89,10 +92,8 @@ body {
     width: 40%;
     height: 100%;
     align-items: center;
-
     border-radius: 20px;
     margin: 10px;
-
 }
 
 .hourly-weather-inner, .weekly-weather-inner {
@@ -143,4 +144,71 @@ body {
 #dayOrNight {
     width: 20vw;
     margin-left: 5vw;
+}
+
+@media screen and (max-width: 480px) {
+    #weekly-weather, #hourly-weather {
+        padding: 10px
+    }
+    #extra div h2 {
+        font-size: larger;
+    }
+    #dayOrNight {
+        margin-left: 2vw;
+    }
+  }
+
+
+  @media screen and (max-width: 376px) {
+    #hourly-weather, #weekly-weather {
+        padding: 10px;
+        gap: 10px
+    }
+    #weekly-weather h3 {
+        font-size: medium;
+        padding: 5px;
+        gap: 5px
+    }
+    .day {
+        gap: 2.5px;
+    }
+    #extra div h2 {
+        font-size: medium;
+    }
+    .extra-inner {
+        width: 39%;
+    }
+    #extra {
+        width: 62.5%;
+    }
+    #dayOrNight {
+        margin-left: 2vw;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    #hourly-weather, #weekly-weather {
+        padding: 5px;
+        gap: 10px
+    }
+    #weekly-weather h3 {
+        font-size: medium;
+        padding: 5px;
+        gap: 5px
+    }
+    .day {
+        gap: 2.5px;
+    }
+    #extra div h2 {
+        font-size: small;
+    }
+    .extra-inner {
+        width: 39%;
+    }
+    #extra {
+        width: 62.5%;
+    }
+    #dayOrNight {
+        margin-left: 2vw;
+    }
 }
